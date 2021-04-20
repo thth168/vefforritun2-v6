@@ -6,7 +6,7 @@ import { Film } from '../components/film/Film';
 import { Layout } from '../components/layout/Layout';
 import { characterFragment } from '../graphql/characterFragment';
 import { fetchSwapi } from '../lib/swapi';
-import { IFilm } from '../types';
+import { IFilm, IFilmResponse } from '../types';
 
 export type PageProps = {
   films: Array<IFilm> | null;
@@ -28,22 +28,39 @@ export default function PageComponent(
       </Head>
       <h1>Star Wars films</h1>
       {films.map((film, i) => (
-        <Film key={i} />
+        <Film
+          key={i}
+          title={film.title}
+          episodeID={film.episodeID}
+          openingCrawl={film.openingCrawl}
+          characters={film.characterConnection.characters}
+        />
       ))}
     </Layout>
   );
 }
 
 const query = `
-  {
-    # TODO sækja gögn um myndir
+  query ($after: String = "") {
+    allFilms(after: $after) {
+      films {
+        title
+        episodeID
+        openingCrawl
+        characterConnection(after: $after) {
+          characters {
+            ...character
+          }
+        }
+      }
+    }
   }
   ${characterFragment}
 `;
 
 export const getServerSideProps: GetServerSideProps<PageProps> = async () => {
-  const films = await fetchSwapi<any>(query); // TODO EKKI any
-
+  const data = await fetchSwapi<IFilmResponse>(query);
+  const films = data?.allFilms?.films ?? null;
   return {
     props: {
       films,

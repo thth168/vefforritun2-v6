@@ -9,8 +9,10 @@ type Props = {
 export function Layout({ children }: Props): JSX.Element {
   return (
     <div className={s.layout}>
-      <Link href="/">Films</Link>
-      <Link href="/characters">Characters</Link>
+      <header className={s.layout__header}>
+        <Link href="/">Films</Link>
+        <Link href="/characters">Characters</Link>
+      </header>
       <main>{children}</main>
     </div>
   );

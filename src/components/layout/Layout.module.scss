@@ -3,6 +3,9 @@
 .layout {
   &__header {
     margin-bottom: 1rem;
+    > a {
+      margin-right: 1rem;  
+    }
   }
 
   &__list {
@@ -12,7 +15,7 @@
 
   &__listItem {
     &:first-child {
-      margin-right: 1rem;
+      margin-right: 1rem !important;
     }
   }
 }

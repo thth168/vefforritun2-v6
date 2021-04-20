@@ -1,4 +1,32 @@
-
 .film {
-  
+  display: grid;
+  grid-template:
+    "title title" auto
+    "crawl chars" auto / min(40%, 400px) 1fr;
+  gap: 1rem;
+  border-bottom: 1px solid;
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+
+  &__title {
+    grid-area: title;
+  }
+
+  &__crawl {
+    grid-area: crawl;
+    font-family: monospace;
+
+    > p {
+        margin-bottom: 1rem;
+    }
+  }
+
+  &__characters {
+    grid-area: chars;
+    justify-self: flex-end;
+
+    > a {
+        margin-right: 1ch;
+    }
+  }
 }
