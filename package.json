@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint ./src --fix"
+    "start": "next start -p $PORT",
+    "lint": "eslint ./src"
   },
   "dependencies": {
     "classnames": "^2.2.6",
