@@ -12,4 +12,4 @@ og svo til að keyra verkefnið þá er keyrt
 npm run dev
 ```
 
-Verkefnið má fynna keyrandi á
+Verkefnið má fynna keyrandi á https://thth168-vefforritun2-v6.herokuapp.com/
